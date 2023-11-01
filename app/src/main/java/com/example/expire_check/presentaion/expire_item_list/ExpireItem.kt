@@ -1,7 +1,9 @@
 package com.example.expire_check.presentaion.expire_item_list
 
-import androidx.compose.foundation.BorderStroke
+
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Fastfood
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -55,7 +59,6 @@ fun ExpireItem(modifier: Modifier = Modifier) {
                 Text(
                     text = "title",
                     modifier = Modifier
-                        .weight(8f)
                         .weight(1f),
                     color = Color.Black,
                     style = MaterialTheme.typography.headlineMedium,
@@ -65,7 +68,6 @@ fun ExpireItem(modifier: Modifier = Modifier) {
                 Text(
                     text = "days",
                     modifier = Modifier
-                        .weight(8f)
                         .weight(1f),
                     color = Color.Black,
                     style = MaterialTheme.typography.headlineMedium,
@@ -80,12 +82,10 @@ fun ExpireItem(modifier: Modifier = Modifier) {
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Row {
+            Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
+                Spacer(modifier = Modifier.weight(1f))
                 Text(
                     text = "expiration date",
-                    modifier = Modifier
-                        .weight(8f)
-                        .weight(1f),
                     color = Color.Black,
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.SemiBold,
@@ -93,7 +93,37 @@ fun ExpireItem(modifier: Modifier = Modifier) {
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
+            Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "description",
+                    color = Color.Black,
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1
+                )
+                Icon(
+                    imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = "description",
+                    tint = Color.Black,
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .clickable {
+                            isExpanded = !isExpanded
+                        }
+                )
 
+            }
+            if (isExpanded)
+                Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text(
+                        text = "expiration date expiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration dateexpiration date",
+                        color = Color.Black,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.Thin,
+                    )
+                }
 
         }
 
